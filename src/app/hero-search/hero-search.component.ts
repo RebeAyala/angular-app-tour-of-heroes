@@ -30,10 +30,11 @@ export class HeroSearchComponent implements OnInit {
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
-      // ignore new term if same as previous term
+      // ignora el término nuevo si es el mismo que el término anterior
       distinctUntilChanged(),
 
-      // switch to new search observable each time the term changes
+    
+      // cambia a una nueva búsqueda observable cada vez que cambia el término
       switchMap((term: string) => this.heroService.searchHeroes(term)),
     );
   }
