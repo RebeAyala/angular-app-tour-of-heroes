@@ -24,10 +24,10 @@ import { SpinnerInterceptor } from './components/interceptor/Spinner.interceptor
     AppRoutingModule,
     HttpClientModule,
 
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    //El módulo encargado del servidor simulado
+  // El módulo HttpClientInMemoryWebApiModule intercepta solicitudes HTTP
+    // y devuelve respuestas de servidor simuladas.
+    // Eliminarlo cuando un servidor real esté listo para recibir solicitudes.
+    // El módulo encargado del servidor simulado
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )

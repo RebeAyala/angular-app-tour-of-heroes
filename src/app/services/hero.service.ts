@@ -11,17 +11,16 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class HeroService {
 
-  private heroesUrl = 'api/heroes';  // URL to web api
-
+  private heroesUrl = 'api/heroes';  // URL de la API web
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(
-    private http: HttpClient,
+    private http: HttpClient, //servicio
     private messageService: MessageService) { }
 
-  /** GET héroes del servidor */
+  /** Retorna todos los héroes del servidor */
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
@@ -30,7 +29,7 @@ export class HeroService {
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** OBTENGA héroe por id.  404 si no se encuentra la identificación */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
@@ -39,12 +38,12 @@ export class HeroService {
     );
   }
 
-  /** GET hero by id. Return `undefined` when id not found */
+  /** OBTENGA héroe por id. Devuelve "indefinido" cuando no se encuentra la identificación*/
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
     return this.http.get<Hero[]>(url)
       .pipe(
-        map(heroes => heroes[0]), // returns a {0|1} element array
+        map(heroes => heroes[0]), // devuelve una matriz de elementos {0 | 1}
         tap(h => {
           const outcome = h ? `encontrado` : `no se pudo encontrar`;
           this.log(`${outcome} el héroe con id=${id}`);
@@ -75,7 +74,7 @@ export class HeroService {
     );
   }
 
-  /** DELETE: borrá el héroe seleccionado del server */
+  /** DELETE: borra el héroe seleccionado del server */
   deleteHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
 

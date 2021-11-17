@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Hero } from '../interfaces/hero';
-
+//Servidor simulado
 @Injectable({
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
-  createDb() {
+  createDb() { //crea una base de datos en memoria
     const heroes = [
       { id: 11, name: 'Dr Nice' },
       { id: 12, name: 'Narco' },
@@ -23,11 +23,11 @@ export class InMemoryDataService implements InMemoryDbService {
     return {heroes};
   }
 
-  // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
-  // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
+ // Anula el método genId para garantizar que un héroe siempre tenga una identificación.
+  // Si la matriz de héroes está vacía,
+  // el método siguiente devuelve el número inicial (11).
+  // si la matriz de héroes no está vacía, el método siguiente devuelve el valor más alto
+  // ID de héroe + 1.
   genId(heroes: Hero[]): number {
     return heroes.length > 0 ? Math.max(...heroes.map(hero => hero.id)) + 1 : 11;
   }

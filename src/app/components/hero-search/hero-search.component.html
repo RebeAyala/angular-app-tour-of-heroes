@@ -1,10 +1,10 @@
 <div id="search-component">
     <label for="search-box">Búsqueda de héroe</label>
     <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-  
+   <!--Cada vez que el usuario escribe en el cuadro de texto, el enlace llama search() con el valor del cuadro de texto, un "término de búsqueda".-->
     <ul class="search-result">
-      <li *ngFor="let hero of heroes$ | async" >
-        <a routerLink="/detail/{{hero.id}}">
+      <li *ngFor="let hero of heroes$ | async" > <!--async suscribe de manera automatica-->
+        <a routerLink="/detail/{{hero.id}}"> <!-- rutea de acuerdo al id en búsqueda de heroe-->
           {{hero.name}}
         </a>
       </li>
